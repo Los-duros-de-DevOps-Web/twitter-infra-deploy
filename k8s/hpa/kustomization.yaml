@@ -6,3 +6,4 @@ resources:
   - hpa-post-noti.yaml
   - hpa-user.yaml
   - hpa-utils.yaml
+  - hpa-mongo.yaml

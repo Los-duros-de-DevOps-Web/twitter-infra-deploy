@@ -11,4 +11,5 @@ resources:
   - user-service.yaml
   - util-service.yaml
   - sonar-bridge.yaml
+  - mongo-service.yaml
   
