@@ -1,0 +1,31 @@
+name: GitFlow Automation
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  check-commit-message:
+    name: Check Commit Message
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if commit hast merge from release 
+        uses: gsactions/commit-message-checker@v2
+        with:
+          pattern: "^Merge branch 'feature/"
+          error: 'No merge from feature found'
+  
+  create-pr:
+    name: create pull request
+    runs-on: ubuntu-latest
+    needs: check-commit-message
+    steps:
+      - name: create PR
+        uses: emiliopedrollo/create-pull-request@v1.1.0
+        with:
+          token: ${{ secrets.PAT }}
+          title: New Feat for infra 
+          reviewers: CamiloCJ09
+    
+          
