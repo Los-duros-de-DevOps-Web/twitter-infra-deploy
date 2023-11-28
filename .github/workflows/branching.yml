@@ -10,17 +10,11 @@ jobs:
     name: Check Commit Message
     runs-on: ubuntu-latest
     steps:
-      - name: Get PR Commits
-        id: 'get-pr-commits'
-        uses: tim-actions/get-pr-commits@master
+      - name: Check if commit hast merge from release 
+        uses: gsactions/commit-message-checker@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Check if release branch merged
-        uses: tim-actions/commit-message-checker-with-regex@v0.3.1
-        with:
-          commits: ${{ steps.get-pr-commits.outputs.commits }}
           pattern: "^Merge branch 'feature/"
-          one_pass_all_pass: true
+          error: 'No merge from feature found'
   
   create-pr:
     name: create pull request
