@@ -1,14 +1,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: server-hpa
-  namespace: server
+  name: auth-service-hpa
+  namespace: backend-services-ns
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: server-deployment
-  minReplicas: 2
+    name: auth
+  minReplicas: 1
   maxReplicas: 5
   metrics:
   - type: Resource

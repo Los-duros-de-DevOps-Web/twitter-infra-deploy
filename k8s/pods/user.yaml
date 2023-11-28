@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user
+  labels:
+   app: twitter-user
+  namespace: backend-services-ns
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+         app: twitter-user
+  template:
+    metadata:
+      labels:
+        app:  twitter-user
+    spec:
+      containers:
+      - name: twitter-user
+        image: acrtwitter.azurecr.io/twitter-user-service:latest
+        imagePullPolicy: Always
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: backend-secrets
+              key: database_url
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+          requests:
+            cpu: 200m
+            memory: 256Mi
+        ports:
+        - containerPort: 3001

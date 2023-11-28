@@ -2,17 +2,18 @@ variable "resource_group_name" {
   description = "(Required) The name of the resource group in which to create "
   type        = string
 }
-  
+
 variable "resource_group_location" {
-  description = "value of the location"
+  description = "(Required) Specifies the supported Azure location where the resource exists. Changing this forces a new resource to be created."
   type        = string
 }
 
 variable "tags" {
-  description = "tags for the resource"
-  type        = map(any)
+  description = "(Optional) A mapping of tags to assign to the resource."
+  type        = map(string)
   default     = {}
 }
+  
 
 variable "region" {
     type = string
@@ -24,12 +25,8 @@ variable "prefix_name" {
     description = "Prefix for resources names"
 }
 
-variable "admin_username" {
+variable "acr_id"{
     type = string
-    description = "usuario ssh"
+    description = "id for acr"
 }
 
-variable "admin_password" {
-    type = string
-    description = "password ssh"
-}
