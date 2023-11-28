@@ -14,7 +14,7 @@ jobs:
         uses: gsactions/commit-message-checker@v2
         with:
           pattern: "^Merge branch 'feature/"
-          error: 'No merge from feature found'
+          
   
   create-pr:
     name: create pull request
